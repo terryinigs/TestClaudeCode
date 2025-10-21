@@ -1,184 +1,184 @@
-# YouTube 歌回自动剪辑系统 - 项目规划书
+# YouTube 歌回自動剪輯系統 - 專案規劃書
 
-## 项目概述
+## 專案概述
 
 ### 背景
-VTuber 直播后常会上传完整直播档案，粉丝会在评论区标注歌曲演唱时间。本项目旨在开发自动化系统，根据评论区时间戳自动剪辑出歌曲片段。
+VTuber 直播後常會上傳完整直播檔案，粉絲會在留言區標註歌曲演唱時間。本專案旨在開發自動化系統，根據留言區時間戳自動剪輯出歌曲片段。
 
-### 目标用户
-- VTuber 粉丝群体
-- 歌回剪辑爱好者
-- 内容创作者
+### 目標使用者
+- VTuber 粉絲群體
+- 歌回剪輯愛好者
+- 內容創作者
 
 ---
 
-## 一、产品经理（PM）视角
+## 一、產品經理（PM）視角
 
 ### 1.1 核心功能需求
 
-#### MVP (最小可行产品)
-1. **视频监控**
-   - 支持添加 YouTube 频道或播放列表
-   - 自动检测新上传的直播档案
-   - 手动输入单个视频 URL
+#### MVP (最小可行產品)
+1. **影片監控**
+   - 支援新增 YouTube 頻道或播放清單
+   - 自動偵測新上傳的直播檔案
+   - 手動輸入單個影片 URL
 
-2. **评论解析**
-   - 自动扫描视频评论区
-   - 识别时间戳格式（如：`12:34 - 歌名` 或 `1:23:45 歌曲标题`）
-   - 支持多种常见时间戳格式
-   - 过滤和验证有效评论
+2. **留言解析**
+   - 自動掃描影片留言區
+   - 識別時間戳格式（如：`12:34 - 歌名` 或 `1:23:45 歌曲標題`）
+   - 支援多種常見時間戳格式
+   - 過濾和驗證有效留言
 
-3. **视频剪辑**
-   - 根据时间戳自动下载并剪辑
-   - 支持设置片段前后缓冲时间（如前后各 2 秒）
-   - 输出标准格式（MP4, 720p/1080p）
-   - 自动命名：`[频道名]_[日期]_[歌名].mp4`
+3. **影片剪輯**
+   - 根據時間戳自動下載並剪輯
+   - 支援設定片段前後緩衝時間（如前後各 2 秒）
+   - 輸出標準格式（MP4, 720p/1080p）
+   - 自動命名：`[頻道名]_[日期]_[歌名].mp4`
 
-4. **结果管理**
-   - 本地存储剪辑片段
-   - 显示处理状态和进度
-   - 错误日志和通知
+4. **結果管理**
+   - 本機儲存剪輯片段
+   - 顯示處理狀態和進度
+   - 錯誤日誌和通知
 
-#### 进阶功能（Phase 2）
-- 评论投票系统（优先处理高赞评论）
-- 批量处理多个视频
-- 自动上传到云端存储
-- Web 界面或 GUI
-- 定时任务调度
-- 去重机制（避免重复剪辑）
+#### 進階功能（Phase 2）
+- 留言投票系統（優先處理高讚留言）
+- 批次處理多個影片
+- 自動上傳到雲端儲存
+- Web 介面或 GUI
+- 定時任務排程
+- 去重機制（避免重複剪輯）
 
-### 1.2 用户场景
+### 1.2 使用者場景
 
-**场景 1：手动单视频处理**
+**場景 1：手動單影片處理**
 ```
-1. 用户输入 YouTube 视频 URL
-2. 系统扫描评论区获取时间戳
-3. 用户确认要剪辑的片段
-4. 系统自动下载和剪辑
-5. 输出到指定文件夹
-```
-
-**场景 2：频道自动监控**
-```
-1. 用户配置监控的频道列表
-2. 系统定期检查新视频（每小时/每天）
-3. 发现新直播档案后自动处理
-4. 完成后发送通知
+1. 使用者輸入 YouTube 影片 URL
+2. 系統掃描留言區獲取時間戳
+3. 使用者確認要剪輯的片段
+4. 系統自動下載和剪輯
+5. 輸出到指定資料夾
 ```
 
-### 1.3 成功指标
-- 时间戳识别准确率 > 90%
-- 单个视频处理时间 < 30 分钟（取决于片段数量）
-- 系统稳定性：连续运行 7 天无崩溃
-- 用户操作步骤 < 5 步完成配置
+**場景 2：頻道自動監控**
+```
+1. 使用者設定監控的頻道清單
+2. 系統定期檢查新影片（每小時/每天）
+3. 發現新直播檔案後自動處理
+4. 完成後發送通知
+```
 
-### 1.4 风险与限制
-- YouTube API 配额限制（每天 10,000 units）
-- 版权和使用政策合规性
-- 网络带宽需求（下载大视频）
-- 存储空间管理
+### 1.3 成功指標
+- 時間戳識別準確率 > 90%
+- 單個影片處理時間 < 30 分鐘（取決於片段數量）
+- 系統穩定性：連續運行 7 天無崩潰
+- 使用者操作步驟 < 5 步完成設定
+
+### 1.4 風險與限制
+- YouTube API 配額限制（每天 10,000 units）
+- 版權和使用政策合規性
+- 網路頻寬需求（下載大影片）
+- 儲存空間管理
 
 ---
 
-## 二、后端工程师（Backend）视角
+## 二、後端工程師（Backend）視角
 
-### 2.1 系统架构
+### 2.1 系統架構
 
 ```
 ┌─────────────────┐
-│  用户界面层      │
+│  使用者介面層    │
 │  (CLI/Web)      │
 └────────┬────────┘
          │
 ┌────────▼────────────────────────────────┐
-│         应用服务层                       │
+│         應用服務層                       │
 │  ┌──────────┐  ┌──────────┐  ┌────────┐ │
-│  │ 视频管理 │  │ 评论解析 │  │ 剪辑器 │ │
+│  │ 影片管理 │  │ 留言解析 │  │ 剪輯器 │ │
 │  └──────────┘  └──────────┘  └────────┘ │
 └────────┬────────────────────────────────┘
          │
 ┌────────▼────────────────────────────────┐
-│         基础设施层                       │
+│         基礎設施層                       │
 │  ┌──────────┐  ┌──────────┐  ┌────────┐ │
-│  │YouTube API│  │  FFmpeg  │  │ 存储   │ │
+│  │YouTube API│  │  FFmpeg  │  │ 儲存   │ │
 │  └──────────┘  └──────────┘  └────────┘ │
 └─────────────────────────────────────────┘
 ```
 
-### 2.2 技术栈选型
+### 2.2 技術棧選型
 
-#### 编程语言
-**推荐：Python 3.10+**
-- 理由：丰富的视频处理库、YouTube API 客户端成熟、快速原型开发
+#### 程式語言
+**推薦：Python 3.10+**
+- 理由：豐富的影片處理函式庫、YouTube API 客戶端成熟、快速原型開發
 
-**备选：Node.js / Go**
-- Node.js：适合 Web 服务集成
-- Go：高性能、适合长时间运行服务
+**備選：Node.js / Go**
+- Node.js：適合 Web 服務整合
+- Go：高效能、適合長時間運行服務
 
-#### 核心依赖库
+#### 核心相依函式庫
 
 ```python
-# YouTube 交互
+# YouTube 互動
 google-api-python-client  # YouTube Data API v3
-google-auth-oauthlib      # 认证
+google-auth-oauthlib      # 認證
 
-# 视频下载
-yt-dlp                    # YouTube 视频下载（ffmpeg wrapper）
+# 影片下載
+yt-dlp                    # YouTube 影片下載（ffmpeg wrapper）
 
-# 视频处理
-ffmpeg-python            # FFmpeg Python 绑定
+# 影片處理
+ffmpeg-python            # FFmpeg Python 綁定
 
-# 数据处理
-pydantic                 # 数据验证
-sqlalchemy               # 数据库 ORM（可选）
+# 資料處理
+pydantic                 # 資料驗證
+sqlalchemy               # 資料庫 ORM（可選）
 
-# 任务调度
-celery                   # 异步任务队列（进阶）
-apscheduler              # 定时任务
+# 任務排程
+celery                   # 非同步任務佇列（進階）
+apscheduler              # 定時任務
 
 # 其他
-requests                 # HTTP 请求
-python-dotenv            # 环境变量管理
-loguru                   # 日志
+requests                 # HTTP 請求
+python-dotenv            # 環境變數管理
+loguru                   # 日誌
 ```
 
-### 2.3 核心模块设计
+### 2.3 核心模組設計
 
-#### 2.3.1 YouTube 服务模块
+#### 2.3.1 YouTube 服務模組
 ```python
 class YouTubeService:
     """
-    负责与 YouTube API 交互
+    負責與 YouTube API 互動
     """
     def __init__(self, api_key: str):
         self.api_key = api_key
         self.client = build('youtube', 'v3', developerKey=api_key)
 
     def get_video_info(self, video_id: str) -> VideoInfo:
-        """获取视频元数据"""
+        """獲取影片元資料"""
         pass
 
     def get_comments(self, video_id: str, max_results: int = 100) -> List[Comment]:
-        """获取视频评论"""
+        """獲取影片留言"""
         pass
 
     def get_channel_videos(self, channel_id: str) -> List[VideoInfo]:
-        """获取频道最新视频"""
+        """獲取頻道最新影片"""
         pass
 ```
 
-**API 配额优化策略：**
-- 缓存视频信息（24小时）
-- 评论增量获取（只获取新评论）
-- 批量请求减少 API 调用
+**API 配額優化策略：**
+- 快取影片資訊（24小時）
+- 留言增量獲取（只獲取新留言）
+- 批次請求減少 API 呼叫
 
-#### 2.3.2 评论解析模块
+#### 2.3.2 留言解析模組
 ```python
 class CommentParser:
     """
-    解析评论中的时间戳和歌曲信息
+    解析留言中的時間戳和歌曲資訊
     """
-    # 支持的时间格式
+    # 支援的時間格式
     PATTERNS = [
         r'(\d{1,2}):(\d{2}):(\d{2})\s*[-–—]\s*(.+)',  # 1:23:45 - 歌名
         r'(\d{1,2}):(\d{2})\s*[-–—]\s*(.+)',          # 12:34 - 歌名
@@ -187,43 +187,43 @@ class CommentParser:
     ]
 
     def parse_comment(self, text: str) -> Optional[SongTimestamp]:
-        """解析单条评论"""
+        """解析單條留言"""
         pass
 
     def extract_all_timestamps(self, comments: List[Comment]) -> List[SongTimestamp]:
-        """批量提取时间戳"""
+        """批次提取時間戳"""
         pass
 
     def validate_timestamp(self, timestamp: SongTimestamp, video_duration: int) -> bool:
-        """验证时间戳有效性"""
+        """驗證時間戳有效性"""
         pass
 ```
 
-**数据模型：**
+**資料模型：**
 ```python
 from pydantic import BaseModel
 
 class SongTimestamp(BaseModel):
-    start_time: int          # 秒数
-    end_time: Optional[int]  # 如果评论包含结束时间
+    start_time: int          # 秒數
+    end_time: Optional[int]  # 如果留言包含結束時間
     song_name: str
     original_comment: str
-    comment_likes: int       # 用于排序
+    comment_likes: int       # 用於排序
     comment_author: str
 ```
 
-#### 2.3.3 视频剪辑模块
+#### 2.3.3 影片剪輯模組
 ```python
 class VideoClipper:
     """
-    处理视频下载和剪辑
+    處理影片下載和剪輯
     """
     def __init__(self, output_dir: str, buffer_seconds: int = 2):
         self.output_dir = output_dir
         self.buffer_seconds = buffer_seconds
 
     def download_video(self, video_url: str) -> str:
-        """下载视频到临时目录"""
+        """下載影片到臨時目錄"""
         # 使用 yt-dlp
         pass
 
@@ -232,31 +232,31 @@ class VideoClipper:
                      start: int,
                      end: int,
                      output_name: str) -> str:
-        """剪辑视频片段"""
+        """剪輯影片片段"""
         # 使用 FFmpeg
         # ffmpeg -i input.mp4 -ss START -to END -c copy output.mp4
         pass
 
     def batch_clip(self, video_url: str, timestamps: List[SongTimestamp]):
-        """批量剪辑"""
+        """批次剪輯"""
         pass
 ```
 
-**FFmpeg 命令优化：**
+**FFmpeg 命令優化：**
 ```bash
-# 快速剪辑（stream copy，不重新编码）
+# 快速剪輯（stream copy，不重新編碼）
 ffmpeg -ss START -i input.mp4 -to DURATION -c copy -avoid_negative_ts 1 output.mp4
 
-# 精确剪辑（重新编码，速度较慢但精确）
+# 精確剪輯（重新編碼，速度較慢但精確）
 ffmpeg -i input.mp4 -ss START -to END -c:v libx264 -c:a aac output.mp4
 ```
 
-### 2.4 数据库设计（可选）
+### 2.4 資料庫設計（可選）
 
-如果需要持久化和任务管理，建议使用 SQLite（简单）或 PostgreSQL（生产）
+如果需要持久化和任務管理，建議使用 SQLite（簡單）或 PostgreSQL（正式環境）
 
 ```sql
--- 视频表
+-- 影片表
 CREATE TABLE videos (
     id INTEGER PRIMARY KEY,
     video_id VARCHAR(20) UNIQUE,
@@ -282,7 +282,7 @@ CREATE TABLE song_clips (
     FOREIGN KEY (video_id) REFERENCES videos(video_id)
 );
 
--- 监控频道表
+-- 監控頻道表
 CREATE TABLE monitored_channels (
     id INTEGER PRIMARY KEY,
     channel_id VARCHAR(50) UNIQUE,
@@ -292,40 +292,40 @@ CREATE TABLE monitored_channels (
 );
 ```
 
-### 2.5 性能考虑
+### 2.5 效能考量
 
-#### 2.5.1 异步处理
+#### 2.5.1 非同步處理
 ```python
-# 使用异步下载和剪辑
+# 使用非同步下載和剪輯
 import asyncio
 
 async def process_video_async(video_id: str):
-    # 1. 获取评论（I/O bound）
+    # 1. 獲取留言（I/O bound）
     comments = await fetch_comments_async(video_id)
 
-    # 2. 解析时间戳（CPU bound）
+    # 2. 解析時間戳（CPU bound）
     timestamps = parse_timestamps(comments)
 
-    # 3. 下载视频（I/O bound）
+    # 3. 下載影片（I/O bound）
     video_path = await download_video_async(video_id)
 
-    # 4. 并行剪辑多个片段
+    # 4. 並行剪輯多個片段
     tasks = [clip_segment_async(video_path, ts) for ts in timestamps]
     await asyncio.gather(*tasks)
 ```
 
-#### 2.5.2 存储优化
-- 下载最低质量满足需求的视频（节省带宽和存储）
-- 剪辑完成后删除原视频
-- 实现 LRU 缓存策略
+#### 2.5.2 儲存優化
+- 下載最低品質滿足需求的影片（節省頻寬和儲存）
+- 剪輯完成後刪除原影片
+- 實作 LRU 快取策略
 
-#### 2.5.3 错误处理
+#### 2.5.3 錯誤處理
 ```python
 class VideoProcessingError(Exception):
     pass
 
 def retry_on_failure(max_retries=3):
-    """装饰器：失败重试"""
+    """裝飾器：失敗重試"""
     def decorator(func):
         def wrapper(*args, **kwargs):
             for i in range(max_retries):
@@ -334,155 +334,155 @@ def retry_on_failure(max_retries=3):
                 except Exception as e:
                     if i == max_retries - 1:
                         raise
-                    time.sleep(2 ** i)  # 指数退避
+                    time.sleep(2 ** i)  # 指數退避
         return wrapper
     return decorator
 ```
 
-### 2.6 API 设计（如果提供 Web 服务）
+### 2.6 API 設計（如果提供 Web 服務）
 
 ```python
-# RESTful API 端点
+# RESTful API 端點
 
 POST /api/videos
-# 提交新视频处理任务
+# 提交新影片處理任務
 {
     "video_url": "https://youtube.com/watch?v=xxx",
     "auto_detect_timestamps": true,
-    "manual_timestamps": [...]  # 可选
+    "manual_timestamps": [...]  # 可選
 }
 
 GET /api/videos/{video_id}
-# 获取处理状态
+# 獲取處理狀態
 
 GET /api/videos/{video_id}/clips
-# 获取剪辑列表
+# 獲取剪輯清單
 
 POST /api/channels
-# 添加监控频道
+# 新增監控頻道
 
 GET /api/jobs/{job_id}
-# 查询任务状态
+# 查詢任務狀態
 ```
 
 ---
 
-## 三、前端工程师（Frontend）视角
+## 三、前端工程師（Frontend）視角
 
-### 3.1 界面方案
+### 3.1 介面方案
 
-#### 方案 A：命令行工具 (CLI) - MVP 推荐
+#### 方案 A：命令列工具 (CLI) - MVP 推薦
 ```bash
-# 单视频处理
+# 單影片處理
 youtube-clipper process https://youtube.com/watch?v=xxx
 
-# 监控频道
+# 監控頻道
 youtube-clipper monitor --channel UC123456 --interval 1h
 
-# 配置
+# 設定
 youtube-clipper config --api-key YOUR_KEY --output-dir ./clips
 ```
 
-**优点：**
-- 开发快速
-- 适合技术用户
-- 易于自动化集成
+**優點：**
+- 開發快速
+- 適合技術使用者
+- 易於自動化整合
 
-**技术栈：**
-- Python: `click` 或 `typer` 库
-- 进度显示: `tqdm`
-- 表格输出: `rich`
+**技術棧：**
+- Python: `click` 或 `typer` 函式庫
+- 進度顯示: `tqdm`
+- 表格輸出: `rich`
 
-#### 方案 B：Web 界面 - Phase 2
+#### 方案 B：Web 介面 - Phase 2
 ```
-技术栈：
+技術棧：
 - 前端：React / Vue.js / Svelte
-- 后端：FastAPI / Flask
-- 实时通信：WebSocket（进度更新）
+- 後端：FastAPI / Flask
+- 即時通訊：WebSocket（進度更新）
 ```
 
-**核心页面：**
-1. **仪表盘**
-   - 显示处理中/完成的任务
-   - 存储空间使用情况
+**核心頁面：**
+1. **儀表板**
+   - 顯示處理中/完成的任務
+   - 儲存空間使用情況
 
-2. **新建任务**
-   - 输入视频 URL
-   - 预览检测到的时间戳
-   - 编辑/删除时间戳
-   - 开始处理
+2. **新建任務**
+   - 輸入影片 URL
+   - 預覽偵測到的時間戳
+   - 編輯/刪除時間戳
+   - 開始處理
 
-3. **频道管理**
-   - 添加/删除监控频道
-   - 查看历史处理记录
+3. **頻道管理**
+   - 新增/刪除監控頻道
+   - 查看歷史處理記錄
 
-4. **设置**
-   - API 配置
-   - 输出格式设置
-   - 通知设置
+4. **設定**
+   - API 設定
+   - 輸出格式設定
+   - 通知設定
 
-### 3.2 用户体验设计
+### 3.2 使用者體驗設計
 
-#### 关键交互流程
+#### 關鍵互動流程
 ```
-1. 输入视频 URL
+1. 輸入影片 URL
    ↓
-2. [加载动画] 正在获取评论...
+2. [載入動畫] 正在獲取留言...
    ↓
-3. 显示检测到的时间戳列表
-   - 可编辑/删除
-   - 显示评论原文
+3. 顯示偵測到的時間戳清單
+   - 可編輯/刪除
+   - 顯示留言原文
    ↓
-4. 点击"开始剪辑"
+4. 點擊「開始剪輯」
    ↓
-5. [进度条] 下载中... 45%
-   [进度条] 剪辑中... 2/5 完成
+5. [進度條] 下載中... 45%
+   [進度條] 剪輯中... 2/5 完成
    ↓
-6. 完成提示 + 下载链接
+6. 完成提示 + 下載連結
 ```
 
-#### 错误处理 UI
-- 友好的错误提示（而非技术错误信息）
-- 提供解决建议
-- 重试按钮
+#### 錯誤處理 UI
+- 友善的錯誤提示（而非技術錯誤訊息）
+- 提供解決建議
+- 重試按鈕
 
 ---
 
-## 四、技术实现路线图
+## 四、技術實作路線圖
 
-### Phase 1: MVP (2-3 周)
+### Phase 1: MVP (2-3 週)
 **Week 1:**
-- [ ] YouTube API 集成和测试
-- [ ] 评论解析逻辑开发
-- [ ] 时间戳提取和验证
+- [ ] YouTube API 整合和測試
+- [ ] 留言解析邏輯開發
+- [ ] 時間戳提取和驗證
 
 **Week 2:**
-- [ ] 视频下载功能（yt-dlp）
-- [ ] FFmpeg 剪辑功能
+- [ ] 影片下載功能（yt-dlp）
+- [ ] FFmpeg 剪輯功能
 - [ ] 基本 CLI 工具
 
 **Week 3:**
-- [ ] 错误处理和日志
-- [ ] 单元测试
-- [ ] 文档和使用说明
+- [ ] 錯誤處理和日誌
+- [ ] 單元測試
+- [ ] 文件和使用說明
 
-### Phase 2: 增强功能 (3-4 周)
-- [ ] 批量处理
-- [ ] 数据库持久化
-- [ ] 频道监控和调度
-- [ ] Web 界面开发
+### Phase 2: 增強功能 (3-4 週)
+- [ ] 批次處理
+- [ ] 資料庫持久化
+- [ ] 頻道監控和排程
+- [ ] Web 介面開發
 
-### Phase 3: 优化和扩展
-- [ ] 性能优化
-- [ ] 云存储集成
-- [ ] 用户认证系统
-- [ ] 移动端适配
+### Phase 3: 優化和擴充
+- [ ] 效能優化
+- [ ] 雲端儲存整合
+- [ ] 使用者認證系統
+- [ ] 行動端適配
 
 ---
 
-## 五、开发环境配置
+## 五、開發環境設定
 
-### 5.1 必需软件
+### 5.1 必需軟體
 ```bash
 # Python 3.10+
 python --version
@@ -491,33 +491,33 @@ python --version
 sudo apt install ffmpeg  # Linux
 brew install ffmpeg      # macOS
 
-# 项目依赖
+# 專案相依
 pip install -r requirements.txt
 ```
 
-### 5.2 YouTube API 设置
+### 5.2 YouTube API 設定
 ```
-1. 访问 Google Cloud Console
-2. 创建新项目
-3. 启用 YouTube Data API v3
-4. 创建 API 密钥
-5. 配置到 .env 文件
+1. 造訪 Google Cloud Console
+2. 建立新專案
+3. 啟用 YouTube Data API v3
+4. 建立 API 金鑰
+5. 設定到 .env 檔案
 ```
 
-### 5.3 项目结构
+### 5.3 專案結構
 ```
 youtube-song-clipper/
 ├── src/
-│   ├── api/              # YouTube API 交互
-│   ├── parser/           # 评论解析
-│   ├── clipper/          # 视频剪辑
-│   ├── storage/          # 存储管理
-│   └── utils/            # 工具函数
-├── tests/                # 单元测试
-├── cli/                  # 命令行工具
-├── web/                  # Web 界面（可选）
-├── config/               # 配置文件
-├── docs/                 # 文档
+│   ├── api/              # YouTube API 互動
+│   ├── parser/           # 留言解析
+│   ├── clipper/          # 影片剪輯
+│   ├── storage/          # 儲存管理
+│   └── utils/            # 工具函數
+├── tests/                # 單元測試
+├── cli/                  # 命令列工具
+├── web/                  # Web 介面（可選）
+├── config/               # 設定檔
+├── docs/                 # 文件
 ├── requirements.txt
 ├── .env.example
 └── README.md
@@ -527,103 +527,103 @@ youtube-song-clipper/
 
 ## 六、成本估算
 
-### 6.1 开发成本
-- MVP 开发：约 80-120 小时
-- 测试和优化：约 40 小时
-- 文档编写：约 20 小时
+### 6.1 開發成本
+- MVP 開發：約 80-120 小時
+- 測試和優化：約 40 小時
+- 文件撰寫：約 20 小時
 
-### 6.2 运营成本
-- YouTube API：免费（配额内）
-- 云服务器：$5-20/月（如需托管）
-- 云存储：按使用量计费
-- 域名：$10/年（如需 Web 服务）
+### 6.2 營運成本
+- YouTube API：免費（配額內）
+- 雲端伺服器：$5-20/月（如需託管）
+- 雲端儲存：按使用量計費
+- 網域名稱：$10/年（如需 Web 服務）
 
-### 6.3 配额限制
+### 6.3 配額限制
 ```
-YouTube Data API v3 每日配额：10,000 units
+YouTube Data API v3 每日配額：10,000 units
 
 操作成本：
-- 获取视频详情：1 unit
-- 获取评论：1 unit（每页）
-- 搜索：100 units
+- 獲取影片詳情：1 unit
+- 獲取留言：1 unit（每頁）
+- 搜尋：100 units
 
 估算：
-每天可处理约 100 个视频（假设每个视频 100 条评论）
+每天可處理約 100 個影片（假設每個影片 100 條留言）
 ```
 
 ---
 
-## 七、风险评估与应对
+## 七、風險評估與應對
 
-### 7.1 技术风险
+### 7.1 技術風險
 
-| 风险 | 影响 | 概率 | 应对措施 |
+| 風險 | 影響 | 機率 | 應對措施 |
 |------|------|------|----------|
-| API 配额超限 | 高 | 中 | 实现缓存、批量请求、用户自带 API Key |
-| 时间戳格式多样 | 中 | 高 | 使用多个正则表达式、机器学习辅助 |
-| 视频下载失败 | 中 | 中 | 重试机制、降级策略 |
-| FFmpeg 剪辑错误 | 中 | 低 | 参数验证、错误捕获 |
+| API 配額超限 | 高 | 中 | 實作快取、批次請求、使用者自帶 API Key |
+| 時間戳格式多樣 | 中 | 高 | 使用多個正規表達式、機器學習輔助 |
+| 影片下載失敗 | 中 | 中 | 重試機制、降級策略 |
+| FFmpeg 剪輯錯誤 | 中 | 低 | 參數驗證、錯誤捕獲 |
 
-### 7.2 法律风险
-- **版权问题**：明确标注仅供个人学习使用
-- **YouTube ToS**：遵守服务条款，避免大规模爬取
-- **用户协议**：添加免责声明
+### 7.2 法律風險
+- **版權問題**：明確標註僅供個人學習使用
+- **YouTube ToS**：遵守服務條款，避免大規模爬取
+- **使用者協議**：新增免責聲明
 
-### 7.3 运营风险
-- 存储空间快速增长 → 实现自动清理机制
-- 网络带宽限制 → 限制并发下载数
-
----
-
-## 八、成功案例参考
-
-### 类似项目
-1. **yt-dlp**：YouTube 下载工具（可借鉴其下载逻辑）
-2. **youtube-dl-server**：Web 界面封装
-3. **Clipper.gg**：游戏剪辑工具（UI/UX 参考）
+### 7.3 營運風險
+- 儲存空間快速增長 → 實作自動清理機制
+- 網路頻寬限制 → 限制並行下載數
 
 ---
 
-## 九、下一步行动
+## 八、成功案例參考
 
-### 立即执行
-1. ✅ 阅读并确认此规划书
-2. [ ] PM 确认功能优先级
-3. [ ] Backend 选定技术栈
-4. [ ] Frontend 确定界面方案（CLI vs Web）
-
-### 本周任务
-1. [ ] 申请 YouTube API 密钥
-2. [ ] 搭建开发环境
-3. [ ] 实现时间戳解析 POC（Proof of Concept）
-4. [ ] 测试 yt-dlp + FFmpeg 剪辑流程
-
-### 需要决策的问题
-1. **目标用户群体**：技术用户 vs 普通用户？
-2. **部署方式**：本地工具 vs 云服务？
-3. **商业模式**：开源免费 vs 付费服务？
-4. **初始支持语言**：仅中文评论 vs 多语言？
+### 類似專案
+1. **yt-dlp**：YouTube 下載工具（可借鑑其下載邏輯）
+2. **youtube-dl-server**：Web 介面封裝
+3. **Clipper.gg**：遊戲剪輯工具（UI/UX 參考）
 
 ---
 
-## 十、附录
+## 九、下一步行動
 
-### A. 技术词汇表
-- **VTuber**：Virtual YouTuber，虚拟主播
-- **歌回**：唱歌直播的录播
-- **时间戳**：视频中特定时间点标记（如 12:34）
-- **FFmpeg**：开源视频处理工具
-- **yt-dlp**：YouTube 视频下载工具
+### 立即執行
+1. ✅ 閱讀並確認此規劃書
+2. [ ] PM 確認功能優先順序
+3. [ ] Backend 選定技術棧
+4. [ ] Frontend 確定介面方案（CLI vs Web）
 
-### B. 参考资源
-- YouTube Data API v3 文档：https://developers.google.com/youtube/v3
-- FFmpeg 文档：https://ffmpeg.org/documentation.html
+### 本週任務
+1. [ ] 申請 YouTube API 金鑰
+2. [ ] 建置開發環境
+3. [ ] 實作時間戳解析 POC（Proof of Concept）
+4. [ ] 測試 yt-dlp + FFmpeg 剪輯流程
+
+### 需要決策的問題
+1. **目標使用者群體**：技術使用者 vs 一般使用者？
+2. **部署方式**：本機工具 vs 雲端服務？
+3. **商業模式**：開源免費 vs 付費服務？
+4. **初始支援語言**：僅中文留言 vs 多語言？
+
+---
+
+## 十、附錄
+
+### A. 技術詞彙表
+- **VTuber**：Virtual YouTuber，虛擬主播
+- **歌回**：唱歌直播的錄播
+- **時間戳**：影片中特定時間點標記（如 12:34）
+- **FFmpeg**：開源影片處理工具
+- **yt-dlp**：YouTube 影片下載工具
+
+### B. 參考資源
+- YouTube Data API v3 文件：https://developers.google.com/youtube/v3
+- FFmpeg 文件：https://ffmpeg.org/documentation.html
 - yt-dlp GitHub：https://github.com/yt-dlp/yt-dlp
 
 ---
 
-**文档版本**：v1.0
-**创建日期**：2025-10-21
-**最后更新**：2025-10-21
-**负责人**：待定
-**状态**：待审核
+**文件版本**：v1.1
+**建立日期**：2025-10-21
+**最後更新**：2025-10-21
+**負責人**：待定
+**狀態**：待審核
